@@ -1,0 +1,31 @@
+# Training config on BVCC dataset.
+
+# ------------------------------
+# Architecture
+# ------------------------------
+ProjectionHead:
+    conv_channels = (32, 32)
+    dense_neurons = (64, 32, 1)
+    use_poolings = (True, True)
+    kernel_size = 5
+    pool_size = 5
+    
+# ------------------------------
+# Dataset
+# ------------------------------
+Bvcc:
+    debug = False
+
+get_dataloader:
+    num_workers = 12
+    shuffle = True
+
+# ------------------------------
+# Training loop
+# ------------------------------
+TrainingLoop:
+    num_epochs = 30
+    learning_rate = 1e-4
+    dataset_cls = @Bvcc
+    weight_decay = 0.0
+    batch_size_train = 64
