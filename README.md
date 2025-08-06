@@ -12,5 +12,5 @@ The framework is Gin configurable; specifying model and dataset is done with a G
 The code can be found in [Speech_SSL_finetune_MOS](https://github.com/Hope-Liang/Speech_SSL_finetune_MOS).
 
 ## Model checkpoints
-All projection head model checkpoints can be found in [Google Drive](), with 5 runs for each layer of each SSL model on each of the three datasets.
+All projection head model checkpoints can be found in [Google Drive](https://drive.google.com/file/d/1_u8-l5pVZVoPXVVOi8HOcRxj31UScmMC/view?usp=share_link), with 5 runs for each layer of each SSL model on each of the three datasets.
 
