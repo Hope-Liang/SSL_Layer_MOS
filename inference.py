@@ -1,4 +1,6 @@
 import argparse
+import torch
+import os
 
 from extract_ssl_features import process_audio, get_ssl_model
 
@@ -25,4 +27,6 @@ def main():
 		features, _ = model.extract_features(audio_tensor)
 
 	selected_feature = features[i].squeeze().T.cpu().numpy()
-	
+	projection_head_model = torch.jit.load(ckpt_path).to(device)
+	prediction = projection_head_model(selected_feature.unsqueeze(0)).squeeze()
+	print(f"The MOS score for the clip is {prediction}.")
