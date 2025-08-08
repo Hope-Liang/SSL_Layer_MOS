@@ -127,7 +127,7 @@ def get_ssl_model(model_name: str):
         #     model = Wav2Vec2Model.from_pretrained("facebook/wav2vec2-base-960h") # 12 layer, 768-dim feature
         #     model = ModelWithBuffer(model)
         case _:
-            raise ValueError('')
+            raise ValueError(f'The model name {model_name} is not supported. Please double check the model name.')
     return model, model_sr
 
 
