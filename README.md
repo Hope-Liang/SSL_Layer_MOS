@@ -14,3 +14,6 @@ The code can be found in [Speech_SSL_finetune_MOS](https://github.com/Hope-Liang
 ## Model checkpoints
 All projection head model checkpoints can be found in [Google Drive](https://drive.google.com/file/d/1_u8-l5pVZVoPXVVOi8HOcRxj31UScmMC/view?usp=share_link), with 5 runs for each layer of each SSL model on each of the three datasets.
 
+## Inference
+1. Download the model checkpoints from the Google Drive link.
+2. Run `python inference.py --audio_path=<YOUR_AUDIO_PATH> --ssl_model=<SELECTED_SSL_MODEL> --ssl_layer=<SELECTED_SSL_LAYER> --ckpt=<SELECTED_MODEL_CKPT_FROM>`
