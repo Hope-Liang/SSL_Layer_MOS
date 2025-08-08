@@ -9,7 +9,6 @@ import torch
 import torchaudio
 from transformers import Wav2Vec2Model, AutoModel
 from transformers import Wav2Vec2Processor, Wav2Vec2ForCTC
-# from transformers import AutoProcessor, Wav2Vec2BertModel
 
 
 def load_audio(audio_path: str, target_sr: int) -> np.ndarray:
@@ -110,31 +109,13 @@ def get_ssl_model(model_name: str):
         #============================Custom Data Fine-tuned====================
         case _ if re.fullmatch(r'w2v2_base_bvcc_finetuned_\d+epoch', model_name):
             ckpt_num = 39*extract_epoch(model_name, 'bvcc')
-            model = AutoModel.from_pretrained(f'/proj/berzelius-2023-179/users/projects/finetune_ssl/bvcc_finetuned_10epoch/checkpoint-{ckpt_num}')
+            model = AutoModel.from_pretrained(f'/projects/finetune_ssl/bvcc_finetuned_10epoch/checkpoint-{ckpt_num}')
             model = ModelWithBuffer(model)
         case _ if re.fullmatch(r'w2v2_base_tencent_finetuned_\d+epoch', model_name):
             ckpt_nums = [62, 125, 187, 250, 312, 375, 437, 500, 562, 620]
             ckpt_num = ckpt_nums[extract_epoch(model_name, 'tencent')-1]
-            model = AutoModel.from_pretrained(f'/proj/berzelius-2023-179/users/projects/finetune_ssl/tencent_finetuned_10epoch/checkpoint-{ckpt_num}')
+            model = AutoModel.from_pretrained(f'/projects/finetune_ssl/tencent_finetuned_10epoch/checkpoint-{ckpt_num}')
             model = ModelWithBuffer(model)
-        # case 'w2v2_base_bvcc_finetuned_1epoch':
-        #     model = AutoModel.from_pretrained('/proj/berzelius-2023-179/users/projects/finetune_ssl/bvcc_finetuned_3epoch/checkpoint-39')
-        #     model = ModelWithBuffer(model)
-        # case 'w2v2_base_bvcc_finetuned_2epoch':
-        #     model = AutoModel.from_pretrained('/proj/berzelius-2023-179/users/projects/finetune_ssl/bvcc_finetuned_3epoch/checkpoint-78')
-        #     model = ModelWithBuffer(model)
-        # case 'w2v2_base_bvcc_finetuned_3epoch':
-        #     model = AutoModel.from_pretrained('/proj/berzelius-2023-179/users/projects/finetune_ssl/bvcc_finetuned_3epoch/checkpoint-117')
-        #     model = ModelWithBuffer(model)
-        # case 'w2v2_base_tencent_finetuned_1epoch':
-        #     model = AutoModel.from_pretrained('/proj/berzelius-2023-179/users/projects/finetune_ssl/tencent_finetuned_3epoch/checkpoint-62')
-        #     model = ModelWithBuffer(model)
-        # case 'w2v2_base_tencent_finetuned_2epoch':
-        #     model = AutoModel.from_pretrained('/proj/berzelius-2023-179/users/projects/finetune_ssl/tencent_finetuned_3epoch/checkpoint-125')
-        #     model = ModelWithBuffer(model)
-        # case 'w2v2_base_tencent_finetuned_3epoch':
-        #     model = AutoModel.from_pretrained('/proj/berzelius-2023-179/users/projects/finetune_ssl/tencent_finetuned_3epoch/checkpoint-186')
-        #     model = ModelWithBuffer(model)
         # TODO: Fix bugs.
         # case 'mms-300m':
         #     model = Wav2Vec2Model.from_pretrained("facebook/mms-300m") # 24 layer, 1024-dim feature
